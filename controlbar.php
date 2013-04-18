@@ -7,12 +7,12 @@
 <!-- <div id="headerNav">
  <a href="./login.php">Login</a> 
 </div>-->
-<div id="control">
+<div id="controlbar">
   <div id="logoAndPN">
     <div id="logo">
       Part Fitter
     </div><!-- END logo -->
-    <div id="pnSearch" class="chooser" style="float:left;margin:20px;">
+    <div id="pnSearch" class="chooser">
       Search Partnumbers:<br />
       <form name="partSearch" action="" method="POST">
         <input name="pnSearch" placeholder="PN-012-345"></input><br />
@@ -21,8 +21,8 @@
       </form>
     </div><!-- End pnSearch --> 
   </div><!-- END logoAndPN -->
-  <div class="headSeparator" style="float:left;border-left:1px solid #EEE;height:100px;margin-top:25px;"></div>  
-  <div id="vehicleSelect" class="chooser" style="float:left;margin:20px">
+  <div class="separator"></div>  
+  <div id="vehicleSelect" class="chooser">
     Search by Vehicle:<br />
     <?php 
       // Query DB and present vehicle selection inputs 
@@ -36,7 +36,7 @@
       // Else present the part creation form
 //      echo '<div class="headSeparator" style="float:left;margin-top:50px;">OR</div>';
 ?>
-      <div class="headSeparator" style="float:left;border-left:1px solid #EEE;height:100px;margin-top:25px;"></div>
+      <div class="separator"></div>
       <div id="pnAdder" class="chooser">
       <center>Add a Part:</center>
       <form name="addPart" action="" method="POST">
@@ -57,7 +57,7 @@
    // }//End user_id check
   ?>
 
-  <div class="headSeparator" style="float:left;border-left:1px solid #EEE;height:100px;margin-top:25px;"></div>  
+  <div class="separator"></div>  
     <?php
       require_once("headerUserArea.php");
     ?>

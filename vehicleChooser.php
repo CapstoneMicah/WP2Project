@@ -29,6 +29,11 @@ $submodelResult = $mysqli->query($submodelQuery);
 $engineResult = $mysqli->query($engineQuery);
 ?>
     <form name="vehicleSelect" action="" method="POST">
+      <select name="yearChoice" class="vehicleSelection">
+        <option value="" >Year</option>
+        <!-- If more years are added, generate from DB results -->
+        <option value="2013" >2013</option>
+      </select></br>
       <select name="makeChoice" class="vehicleSelection">
         <option value="" >Make</option>
         <?php
