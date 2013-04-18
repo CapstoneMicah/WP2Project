@@ -7,12 +7,11 @@ if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
    exit;
 }
 
-$title="Home";
-$css=array("./inc/css/basic.css");//, "form.css");
+  $title="Home";
+  $css=array("./inc/css/style.css");//, "form.css");
 
-require("./header.php");
-//require("rfront.php");
-//require("orderfns.php");
+  require("./controlbar.php"); 
+  require_once("./controller.php");
+  require("rback.php");
 
-require("rback.php");
 ?> 
