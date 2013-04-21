@@ -9,9 +9,11 @@ if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
 
   $title="Home";
   $css=array("./inc/css/style.css");//, "form.css");
-
+  require("./header2.php");
   require("./controlbar.php"); 
-  require_once("./controller.php");
-  require("rback.php");
+?>
+<div id="mainContainer">
+<?php  require_once("./controller.php"); ?>
+</div>
 
-?> 
+<?php  require("rback.php");i ?> 
