@@ -1,7 +1,7 @@
 body 
 { 
   background-color: #DDD; 
-  margin: 0px; 
+  margin: 0px, 50px; 
   line-height: 140%  
 }
 
@@ -23,7 +23,7 @@ div#headerNav
   display: block;
   width:100%;
   height:30px;
-  background-color:#222;
+  background-color:black;
   margin-bottom:20px;
 }
 
@@ -37,66 +37,8 @@ div#control
    text-align: right;
    padding-right: 1em;
    padding-left: 0.5em;
-   margin-left:6%;
-   margin-right:6%;
    border-radius: 10px;
 }
-
-div.headSeparator
-{
-  float:left;
-  border-left:1px solid #EEE;
-  height:100px;
-  margin-top:25px;
-}
-
-div.chooser
-{
-  float:left;
-  margin:20px;
-}
-
-div#body
-{
-  background-color:#FAFAFA;
-  border: 1px solid #666;
-  margin-top: 25px;
-  margin-left: 6%;
-  margin-right: 6%;
-  min-height: 800px;
-  border-radius: 8px;
-}
-
-ul.partRow
-{
-  list-type:none;
-  list-style-type:none;
-}
-
-ul.partrow li
-{
-  float:left;
-  display:block;
-  border:1px solid green;
-  width:150px;
-  margin:0px 10px 0px;
-}
-
-ul#partRowHeader
-{
-  list-type:none;
-  list-style-type:none;
-}
-
-ul#partRowHeader li
-{
-  float:left;
-  display:block;
-  width:150px;
-  border:1px solid blue;
-  margin:0px 10px 0px;
-}
-
 nav.control
 {  display: block;/*table-cell;*/
    background-color: #333;
