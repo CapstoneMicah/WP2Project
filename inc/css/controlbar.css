@@ -1,0 +1,93 @@
+/* controlbar stylesheet */
+
+div#controlbar
+{  
+   position:relative;
+   display: block;/*table-cell;*/
+   color: white;
+   font-family: Arial, Helvetica, sans-serif;
+   font-weight: bold;
+   height: 90px;
+   text-align: right;
+   padding-right: 1em;
+   padding-left: 0.5em;
+   margin-left:0%;
+   margin-right:0%;
+   border-bottom:1px solid fff;
+   background: #2c2c2c; /* Old browsers */
+   background: -moz-linear-gradient(top,  #141414 0%, #2d2d2d 15%, #1c1c1c 65%, #131313 100%); /* FF3.6+ */
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#141414), color-stop(15%,#2d2d2d), color-stop(65%,#1c1c1c), color-stop(100%,#131313)); /* Chrome,Safari4+ */
+   background: -webkit-linear-gradient(top,  #141414 0%,#2d2d2d 15%,#1c1c1c 65%,#131313 100%); /* Chrome10+,Safari5.1+ */
+   background: -o-linear-gradient(top,  #141414 0%,#2d2d2d 15%,#1c1c1c 65%,#131313 100%); /* Opera 11.10+ */
+   background: -ms-linear-gradient(top,  #141414 0%,#2d2d2d 15%,#1c1c1c 65%,#131313 100%); /* IE10+ */
+   background: linear-gradient(to bottom,  #141414 0%,#2d2d2d 15%,#1c1c1c 65%,#131313 100%); /* W3C */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#141414', endColorstr='#131313',GradientType=0 );
+   z-index:10;
+
+}
+
+div#controlbar #pnSearch
+{
+  margin-left:7%;
+}
+
+div#controlbar .chooser
+{
+  float:left;
+  min-width:190px;
+}
+
+div#controlbar .separator
+{
+  float:left;
+  border-left:1px solid #EEE;
+  height:40px;
+  margin-top:25px;  
+}
+
+div#controlbar div#pnSearchFormDiv, div#pnAdderFormDiv
+{
+  padding:20px 20px 8px 20px;
+}
+
+div#myVehiclesButton /*vehicleSelectDiv*/
+{
+  width:100px;
+  margin:30px auto 10px auto;
+  font-family:Sans-serif;
+  font-size:80%;
+  display:block;
+  padding:5px 10px;
+  background-color:#444;
+  border-top-right-radius:6px;
+  border-top-left-radius:6px;
+  border-bottom-right-radius:6px;
+  border-bottom-left-radius:6px;
+  cursor:pointer;
+}
+
+div#myVehiclesButton:hover /*vehicleSelectDiv:hover*/
+{
+  background-color:#555;
+}
+
+div#controlbar select.vehicleSelection select.partAddSelection
+{
+  width:150px;
+}
+
+div#controlbar div#vehicleSelectExtension
+{
+  position:relative;
+  height:100%;
+  width:190px;
+  margin-top:0px;
+  background-color:#131313;
+  z-index:1;
+}
+
+div#controlbar #bottom
+{
+  width:100%;
+  border-top:1px solid #2d2d2d;
+}

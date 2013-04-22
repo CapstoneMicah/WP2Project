@@ -38,10 +38,9 @@ function displayResults($searchResults){
   <table class="partResults" >
     <tr id="partRowHeader">
       <th>Brand/Vendor</th>
-      <th style="min-width:100px;">Part Number</th>
+      <th>Part Number</th>
       <th>Description</th>
       <th>Category</th>
-      <th>Subcategory</th>
       <th>Location</th>
       <th>Vehicle Applications</th>
       <th>My Vehicle</th>
@@ -54,21 +53,17 @@ function displayResults($searchResults){
       echo '<td>'.$row['partnumber'].'</td>';
       echo '<td>'.$row['description'].'</td>';
       echo '<td>'.$row['category'].'</td>';
-      echo '<td>'.$row['subcategory'].'</td>';
       echo '<td>'.$row['location'].'</td>';
       echo '<td>';
         echo '<a href="javascript:viewApplications('.$row['partnumber'].')">View Applications</a>';
       echo '</td>';
       echo '<td>';
-      echo '<div class="check" style="float:left;font-size:0.6em;color:red;"><a href="javascript:setCompatible(\''.$_SESSION['vehicleID'].'\');" class="checkbutton"></a><br />'.$row['downscore'].'</div>';
-        echo '<div class="x" style="float:right;font-size:0.6em;color:green;"><a href="javascript:setIncompatible(\''.$_SESSION['vehicleID'].'\');" class="xbutton"></a><br />'.$row['upscore'].'</div></td>';
-      
-      
+        echo '<div class="check" style="float:left;font-size:0.6em;color:red;"><img src="./inc/img/check.png" /><br />'.$row['downscore'].'</div>';
+        echo '<div class="x" style="float:right;font-size:0.6em;color:green;"><img src="./inc/img/x.png" /><br />'.$row['upscore'].'</div></td>';
     echo '</tr>';
   }//end foreach
 ?>
 </table>
-</div><!-- End partSearchResults -->
 <?php
   }//END if buildRows
 }

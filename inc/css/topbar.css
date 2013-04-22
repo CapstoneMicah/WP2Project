@@ -1,0 +1,47 @@
+/* topbar stylesheet */
+
+div#topbar
+{
+  width:100%;
+  margin-top:0px;
+  height:30px;
+  background-color:#051;
+}
+
+div#topbar div#logo
+{
+  float:left;
+  margin:0px 20px 0px 6%;
+  font-size: 2em;
+  font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace; 
+  padding-top:4px;
+  width:200px;
+  color:#FAFAFA;
+}
+
+div#topbar div#slogan
+{
+  float:left;
+  margin-left:80px;
+  font-size:14px;
+  font-family:Arial, Helvetica, sans-serif;
+  margin-right:60px;
+  padding-top:5px;
+  color:#F2FFF2;
+}
+
+div#topbar h3
+{
+  margin-top:0%;
+  margin-left:6%;
+  margin-bottom:0px;
+  font-size:25px;
+}
+
+div#topbar div#user
+{
+  width:200px;
+  float:right;
+  margin-right:6%;
+  text-align:right;
+}

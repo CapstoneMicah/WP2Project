@@ -1,3 +1,30 @@
+$(document).ready(function() {
+
+  $('#myVehiclesButton').click(function(event){
+    $(this).toggleClass('expanded').toggleClass('collapsed');
+    if ($(this).hasClass('expanded')) {
+      $('#vehicleSelectExtension').show();
+    } else {
+      $('#vehicleSelectExtension').hide();
+    }
+    event.stopPropagation();
+  });
+
+  $('html').click(function(){
+    var $myVehiclesButton = $('#myVehiclesButton'),
+        $vehicleSelection = $('#vehicleSelectExtension');
+    if ($myVehiclesButton.hasClass('expanded')) { 
+      $myVehiclesButton.toggleClass('expanded').toggleClass('collapsed'); 
+    } 
+    $vehicleSelection.hide();
+  });
+  
+  $('#vehicleSelectExtension').click(function(event){
+      event.stopPropagation();
+  });
+});
+
+
 function loadNextSelect(data) {
   // Called from: selectedValue()
   // Precondition: A <select> field has an <option> chosen
@@ -16,7 +43,7 @@ function loadNextSelect(data) {
 
       $selector.show();
     }
-    error: 
+//    error: 
   });
 
 }
