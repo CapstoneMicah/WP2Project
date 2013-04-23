@@ -41,7 +41,7 @@ div#mainWrapper
 
 div#body
 {
-  position:relative;
+/*  position:relative;*/
   float:left;
   width:67%;
   min-width:740px;
@@ -77,7 +77,7 @@ div#leftBar .divHeader h3
 
 div#rightBar
 {
-  position:relative;
+/*  position:relative;*/
   float:left;
   /*max-width:400px;*/
   width:30%;
@@ -112,7 +112,7 @@ td,tr.partRow
   font-size:90%;
   padding:0px 15px 0px;
 }
-
+/*
 tr#partRowHeader
 {
   font-size:14px;
@@ -127,50 +127,64 @@ ul#partRowHeader li
   margin:0px 10px 0px;
 }
 
-ul /* unused? */
+ul 
 {
   list-style:none;
 }
-
-tr.partrow td div.check
+*/
+div.checkDiv
 {
+  /*position:relative;*/
+  float:left;
   margin:0px;
+  width:45%;
 }
 
-tr.partrow td div.x
+div.xDiv
 {
+/*  position:relative;*/
+  float:left;
   margin:0px;
+  width:45%;
 }
 
-a.checkbutton
+.checkbutton
 {
-  display:block;
+  cursor:pointer;
+float:left;
+/*  display:block;*/
   width:20px;
   height:20px;
-  background-image:url('../img/stoplightSprite.png');
-  background-position:0px 0px;
+  margin-left:5px;
+  background:url('../img/stoplightSprite.png') 0 0;
 }
 
-a.xbutton
+.xbutton
 {
-  width:15px;
-  height:15px;
-  background-image:url('../img/stoplightSprite.png');
-  background-position:0px 20px;
+float:left;
+cursor:pointer;
+/*display:block;*/
+width:20px;
+height:20px;
+margin-left:5px;
+background:url('../img/stoplightSprite.png') 0 60;
 }
 
-a.checkbutton:hover
+/*div.xDiv:hover*/
+.checkbutton:hover
 {
-/*  display:block;*/
-/*  width:15px;
-  height:15px;*/
-  /*background-image:url('../img/stoplightSprite.png');*/
-  background-position:0px 40px;
+/*  padding:50px;
+ */ background-position: 0 40;
 }
 
-a.xbutton.on, a.xbutton:hover
+/*div#mainWrapper div#body div#partSearchResults table.partResults tr.partRow td div.xDiv 
+*/
+.xbutton:hover
 {
-  background-position:0px 60px;
+/*  padding:50px;
+  background-color:red;
+  */
+background-position:0 20;
 }
 /*
 nav.control
