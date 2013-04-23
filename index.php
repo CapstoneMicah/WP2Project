@@ -22,7 +22,7 @@ if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
     array_push($css,"./inc/css/startGuide.css");
   //}
 
-  require("./header2.php");
+  require("./header.php");
   require("./controlbar.php"); 
 ?>
 <div id="mainContainer">

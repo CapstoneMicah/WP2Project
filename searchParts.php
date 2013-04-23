@@ -1,10 +1,11 @@
 <?php
+  session_start();
   require_once('./lib/db.php');
   require_once('./searchfns.php');
 ini_set('error_log','../../error_log.log');
-
+$_SESSION['vehicleID'] = 1;
 function buildRows($searchResults){
-  $rowResults = array();
+  $rwResults = array();
   $i = 0;
   foreach($searchResults as $category => $subcategories){
     foreach($subcategories as $subcategory => $results){
@@ -49,24 +50,36 @@ function displayResults($searchResults){
   
 <?php  
   foreach($resultRows as $index => $row){ 
-    echo '<tr class="partRow" >';
-      echo '<td>'.$row['brand'].'</td>';
-      echo '<td>'.$row['partnumber'].'</td>';
-      echo '<td>'.$row['description'].'</td>';
-      echo '<td>'.$row['category'].'</td>';
-      echo '<td>'.$row['subcategory'].'</td>';
-      echo '<td>'.$row['location'].'</td>';
-      echo '<td>';
-        echo '<a href="javascript:viewApplications('.$row['partnumber'].')">View Applications</a>';
-      echo '</td>';
-      echo '<td>';
-      echo '<div class="check" style="float:left;font-size:0.6em;color:red;"><a href="javascript:setCompatible(\''.$_SESSION['vehicleID'].'\');" class="checkbutton"></a><br />'.$row['downscore'].'</div>';
-        echo '<div class="x" style="float:right;font-size:0.6em;color:green;"><a href="javascript:setIncompatible(\''.$_SESSION['vehicleID'].'\');" class="xbutton"></a><br />'.$row['upscore'].'</div></td>';
-      
-      
-    echo '</tr>';
-  }//end foreach
 ?>
+    <tr class="partRow" >
+      <td><?php echo $row['brand']; ?></td>
+      <td><?php echo $row['partnumber']; ?></td>
+      <td><?php echo $row['description']; ?></td>
+      <td><?php echo $row['category']; ?></td>
+      <td><?php echo $row['subcategory']; ?></td>
+      <td><?php echo $row['location']; ?></td>
+      <td>
+        <a href="javascript:viewApplications('<?php echo $row['partnumber']; ?>')">View Applications</a>
+      </td>
+<?php
+  if($_SESSION['vehicleID']){
+    getVehiclePartScore($row['partID']);
+?>
+      <td>
+        <div class="checkDiv">
+          <a href="javascript:setCompatible('<?php echo $_SESSION['vehicleID']; ?>');" class="checkbutton"></a>
+          <br /><?php echo $row['downScore']; ?>
+        </div><!-- End checkDiv -->
+        <div class="xDiv">
+          <a href="javascript:setIncompatible('<?php echo $_SESSION['vehicleID']; ?>');" class="xbutton"></a>
+          <br /><?php echo $row['upScore']; ?>
+        </div><!-- end xDiv -->
+      </td>
+<?php
+  }//end myVehicle td
+?>
+    </tr>
+  <?php }//end foreach ?>
 </table>
 </div><!-- End partSearchResults -->
 <?php
@@ -104,5 +117,26 @@ function searchParts(){
   return true;
 }
 
+function getVehiclePartScore($partID) {
+  global $mysqli;
+
+  $query = "SELECT
+              upScore,
+              downScore
+            FROM
+              vehiclePartScore
+            WHERE
+              vehicleConfigID = '".$_SESSION['vehicleID']."'
+              AND partID = ".$partID."
+            LIMIT 1";
+
+  if($rd = $mysqli->query($query)) {
+    $row = $rd->fetch_assoc();
+    return $row;
+  }else{
+    return false;
+  }
+  
+}
 
 ?>
