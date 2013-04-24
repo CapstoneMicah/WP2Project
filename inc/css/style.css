@@ -11,17 +11,7 @@ div#body
   min-width:600px;
   min-height:500px;
 }
-/*
-div#headerNav
-{
-  display: block;
-  width:100%;
-  height:30px;
-  background-color:#222;
-  margin-bottom:20px;
-}*/
 
-/* Beneath the header (topbar and controlbar) */
 div#mainContainer
 {
   position:absolute;
@@ -30,12 +20,12 @@ div#mainContainer
   padding-left: 4%;
   padding-right: 4%;
   height:1px;
-  z-index:-1;
+  /*z-index:-1;*/
 }
 
 div#mainWrapper
 {
-  min-width:1024px;
+  min-width:1130px;
   max-width:100%;
 }
 
@@ -51,17 +41,17 @@ div#body
   z-index:-1;
 }
 
-div#leftBar
+div#leftbar
 {
   float:left;
   width:30%;
-  margin-left:10px;
+  margin-right:10px;
   background-color:#FAFAFA;
   border: 1px solid #666;
   min-height: 800px;
 }
 
-div#leftBar .divHeader h3
+div#leftbar .divHeader h3
 {
   width:100%;
   margin-top:0%;
@@ -75,7 +65,7 @@ div#leftBar .divHeader h3
   background-color:#222;
 }
 
-div#rightBar
+div#rightbar
 {
 /*  position:relative;*/
   float:left;
@@ -87,7 +77,7 @@ div#rightBar
   min-height: 800px;
 }
 
-div#rightBar .divHeader h3
+div#rightbar .divHeader h3
 {
   width:100%;
   margin-top:0%;

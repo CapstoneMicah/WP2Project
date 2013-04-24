@@ -9,9 +9,23 @@ if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
 
 ?>
 
-<div id="leftbar" style="display:none;">
-
-</div>
+<div id="leftbar">
+  <div class="divHeader">
+    <?php 
+      if($_POST['action'] == 'searchParts'){
+        echo '<h3>Refine by Category</h3>'; 
+      };//elseif($_POST['action'] == 'applications' || $_SERVER['SCRIPT_NAME'] == "vehicleApplications.php"){
+        //echo '<h3>Other Applications</h3>';
+     // }
+    ?>
+  </div><!-- End divHeader -->
+<?php
+    // Add any conditions/data to leftbar
+    if($_POST['action'] == 'searchParts'){
+      // Add any additional data to leftbar on partsearch
+    }
+?>
+</div><!-- End leftbar -->
 
 <div id="body"> 
 <?php
@@ -45,20 +59,19 @@ if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
 </div><!-- END body div -->
 
 
-<div id="rightBar">
+<div id="rightbar">
   <div class="divHeader">
     <?php 
-      if($_POST['action'] == 'searchParts'){
-        echo '<h3>Part Search Rightbar</h3>'; 
-      }elseif($_POST['action'] == 'applications' || $_SERVER['SCRIPT_NAME'] == "vehicleApplications.php"){
+      //if($_POST['action'] == 'searchParts'){
+        //echo '<h3>Part Search Rightbar</h3>'; 
+      //}else
+if($_POST['action'] == 'applications' || $_SERVER['SCRIPT_NAME'] == "vehicleApplications.php"){
         echo '<h3>Other Applications</h3>';
       }
     ?>
   </div>
   <?php 
-    if($_POST['action'] == 'searchParts'){
-      echo 'Searched parts...';
-    }elseif($_POST['action'] == 'applications' || $_SERVER['SCRIPT_NAME'] == "vehicleApplications.phhp"){
+    if($_POST['action'] == 'applications' || $_SERVER['SCRIPT_NAME'] == "vehicleApplications.phhp"){
       include('./mostCompatible.php'); 
     }
   ?>

@@ -37,6 +37,9 @@ function displayResults($searchResults){
   <center><h2>Search Results</h2></center>
 
   <table class="partResults" >
+    <tr>
+      <td colspan="8" id="tableName" style="background-color:#555;color:#FFF;"><center>Search Results</center></td>
+    </tr>
     <tr id="partRowHeader">
       <th>Brand/Vendor</th>
       <th style="min-width:100px;">Part Number</th>
@@ -51,21 +54,21 @@ function displayResults($searchResults){
 <?php  
   foreach($resultRows as $index => $row){ 
 ?>
-    <tr class="partRow" >
-      <td><?php echo $row['brand']; ?></td>
-      <td><?php echo $row['partnumber']; ?></td>
-      <td><?php echo $row['description']; ?></td>
-      <td><?php echo $row['category']; ?></td>
-      <td><?php echo $row['subcategory']; ?></td>
-      <td><?php echo $row['location']; ?></td>
-      <td>
+    <tr class="partRow">
+      <td class="brandResult"><?php echo $row['brand']; ?></td>
+      <td class="pnResult"><?php echo $row['partnumber']; ?></td>
+      <td class="descResult"><?php echo $row['description']; ?></td>
+      <td class="catResult"><?php echo $row['category']; ?></td>
+      <td class="subcatResult"><?php echo $row['subcategory']; ?></td>
+      <td class="locResult"><?php echo $row['location']; ?></td>
+      <td class="appsResult">
         <a href="javascript:viewApplications('<?php echo $row['partnumber']; ?>')">View Applications</a>
       </td>
 <?php
   if($_SESSION['vehicleID']){
     getVehiclePartScore($row['partID']);
 ?>
-      <td>
+      <td class="myVehResult">
         <div class="checkDiv">
           <a href="javascript:setCompatible('<?php echo $_SESSION['vehicleID']; ?>');" class="checkbutton"></a>
           <br /><?php echo $row['downScore']; ?>
@@ -86,11 +89,21 @@ function displayResults($searchResults){
   }//END if buildRows
 }
 
+function setCatSubcats($catSubcatAssoc) {
+?>
+  <script>
+    catSubcatAssoc = <?php echo json_encode($catSubcatAssoc); ?>;
+  </script>
+<?php
+}
+
 function searchParts(){
   global $mysqli;
   if(isset($_POST['pnSearch'])) {
     // call partnumber search
     $searchResults = array();
+    $catSubcatAssoc = array();
+
     $query = "SELECT
                 parts.partID,
                 parts.partnumber AS partnumber, 
@@ -107,12 +120,14 @@ function searchParts(){
     if($rd = $mysqli->query($query)){
       while($row = $rd->fetch_assoc()){
         $searchResults[$row['category']][$row['subcategory']][$row['brand']] = $row['partnumber'];
-      }
+        $catSubcatAssoc[$row['category']][$row['subcategory']] = 1;
+      } 
     }else{
       echo "unable to execute query";
     }
-
-    displayResults($searchResults);  
+    echo '<script>rightLeft="left"</script>';
+    displayResults($searchResults);
+    setCatSubcats($catSubcatAssoc);
   }//END isset($_POST
   return true;
 }
@@ -138,5 +153,4 @@ function getVehiclePartScore($partID) {
   }
   
 }
-
 ?>

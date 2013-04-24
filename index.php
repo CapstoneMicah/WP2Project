@@ -6,7 +6,6 @@ if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
    header("Location: login.php?target=" . $_SERVER['PHP_SELF']);
    exit;
 }
-
   $title="Home";
   $css=array(
     "./inc/css/topbar.css",
@@ -15,15 +14,16 @@ if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
   );
   $js=array(
     "./inc/js/jquery-1.9.1.min.js",
-    "./inc/js/vehicleSelect.js"
+    "./inc/js/common.js",
+    "./inc/js/vehicleSelect.js",
+    "./inc/js/partSearch.js"
   );
  
   //if(empty($_SESSION['hideStartGuide']) || $_SESSION['hideStartGuide'] != 1) {
     array_push($css,"./inc/css/startGuide.css");
   //}
 
-  require("./header.php");
-  require("./controlbar.php"); 
+  require("./header.php"); 
 ?>
 <div id="mainContainer">
 <div id="mainWrapper">
