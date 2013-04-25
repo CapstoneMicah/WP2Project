@@ -44,7 +44,7 @@ div#body
 div#leftbar
 {
   float:left;
-  width:30%;
+  width:20%;
   margin-right:10px;
   background-color:#FAFAFA;
   border: 1px solid #666;
@@ -176,57 +176,42 @@ background:url('../img/stoplightSprite.png') 0 60;
   */
 background-position:0 20;
 }
-/*
-nav.control
-{  display: block;
-   background-color: #333;
-   color: white;
-   font-family: Arial, Helvetica, sans-serif;
-   font-weight: bold;
-   height: 20%;
-   text-align: right;
-   padding-right: 1em;
-   padding-left: 0.5em;
-   white-space: nowrap;
-   moz-border-radius: 10px;
-}
 
-nav.controlbar > span.self
-{  display: block;
-   color: orange;
-   border: thin solid transparent;
-   margin-top: 1.5em;
-   padding-right: 0.5em;
-   border-radius: 10px;
-}
-
-nav.controlbar > a:link:last-child
-{  margin-bottom: 1.5em;
-}
-
-nav.controlbar > a:link
-{  display: block;
-   text-decoration: none;  
-   color: white;
-   border: thin solid transparent;
-   margin-top: 2em;
-   padding-right: 0.5em;
-}
-
-nav.controlbar > a:hover
+td a.sortAsc
 {
-   border: thin solid white;
+  display:block;
+  width:20px;
+  height:6px;
+  margin:3px auto;
+  background:url('../img/sortSprite.png') 0 0;
 }
-*/
 
-/*
-section#main > article#content
-{  display: table-cell;
-   width: 70%;
-   background-color: white;
-   padding: 2em;
+td a.sortAsc:hover
+{
+  background-position: 0 12;
 }
-*/
+
+#partSearchResults table tbody tr th
+{
+  padding:0px 7px;
+  font-size:0.8em;
+font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+td a.sortDesc
+{
+  display:block;
+  width:20px;
+  height:6px;
+  margin:3px auto;
+  background:url('../img/sortSprite.png') 0 18;
+}
+
+td a.sortDesc:hover
+{
+  background-position: 0 6;
+}
+
 tr,th.odd 
 {
   background-color:#EEE;

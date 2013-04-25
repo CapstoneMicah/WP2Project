@@ -34,11 +34,22 @@ function displayResults($searchResults){
   if($resultRows = buildRows($searchResults)){
 ?>
 <div id="partSearchResults">
-  <center><h2>Search Results</h2></center>
+  <center><h2></h2></center>
 
   <table class="partResults" >
     <tr>
       <td colspan="8" id="tableName" style="background-color:#555;color:#FFF;"><center>Search Results</center></td>
+    </tr>
+
+    <tr id="partRowSortAsc">
+      <td><a href="" class="sortAsc" id="sortBrandAsc"></a></td>
+      <td><a href="" class="sortAsc" id="sortPnAsc"></a></td>
+      <td><a href="" class="sortAsc" id="sortDescripAsc"></a></td>
+      <td><a href="" class="sortAsc" id="sortCatAsc"></a></td>
+      <td><a href="" class="sortAsc" id="sortSubCatAsc"></a></td>
+      <td><a href="" class="sortAsc" id="sortLocAsc"></a></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr id="partRowHeader">
       <th>Brand/Vendor</th>
@@ -49,6 +60,16 @@ function displayResults($searchResults){
       <th>Location</th>
       <th>Vehicle Applications</th>
       <th>My Vehicle</th>
+    </tr>
+    <tr id="partRowSortDesc">
+      <td><a href="" class="sortDesc" id="sortBrandDesc"></a></td>
+      <td><a href="" class="sortDesc" id="sortPnDesc"></a></td>
+      <td><a href="" class="sortDesc" id="sortDescripDesc"></a></td>
+      <td><a href="" class="sortDesc" id="sortCatDesc"></a></td>
+      <td><a href="" class="sortDesc" id="sortSubCatDesc"></a></td>
+      <td><a href="" class="sortDesc" id="sortLocDesc"></a></td>
+      <td></td>
+      <td></td>
     </tr>
   
 <?php  
