@@ -91,3 +91,9 @@ div#controlbar #bottom
   width:100%;
   border-top:1px solid #2d2d2d;
 }
+
+div#pnAdderFormComponentsDiv
+{
+  background-color: #000000;
+  display: inline-block;
+}

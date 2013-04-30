@@ -65,17 +65,19 @@
     <div id="pnAdder" class="chooser">
       <div id="pnAdderFormDiv">
         <center>Add a Part:</center>
-        <form name="addPart" action="" method="POST">
-          <?php require_once('./categoryList.php'); ?>
-          <div id="newPnDiv" style="display:none;">
-            <input name="partnumber" placeholder="New Part Number" style="width:150px;"></input>
-            <br />
-          </div><!-- End newPnDiv -->
-          <input type="hidden" name="action" value="addPart" />
-          <div id="pnAddDiv" style="display:none;">
-            <input type="submit" name="add" value="Add" />
-          </div><!-- End pnAddDiv -->
-        </form>
+        <div id="pnAdderFormComponentsDiv">
+          <form name="addPart" action="" method="POST">
+            <?php require_once('./categoryList.php'); ?>
+            <div id="newPnDiv" style="display:none;">
+              <input name="partnumber" placeholder="New Part Number" style="width:150px;"></input>
+              <br />
+            </div><!-- End newPnDiv -->
+            <input type="hidden" name="action" value="addPart" />
+            <div id="pnAddDiv" style="display:none;">
+              <input type="submit" name="add" value="Add" />
+            </div><!-- End pnAddDiv -->
+          </form>
+        </div>
       </div><!-- End pnAddForm -->
       <div id="pnAddExtension" style="display:none;">
       </div><!-- End pnAddExtension -->
