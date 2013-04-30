@@ -67,8 +67,6 @@
         <center>Add a Part:</center>
         <form name="addPart" action="" method="POST">
           <?php require_once('./categoryList.php'); ?>
-          <?php require_once('./subcategoryList.php'); ?>
-          <?php require_once('./brandList.php'); ?>
           <div id="newPnDiv" style="display:none;">
             <input name="partnumber" placeholder="New Part Number" style="width:150px;"></input>
             <br />

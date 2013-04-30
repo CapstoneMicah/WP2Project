@@ -22,7 +22,7 @@ function sortObject(o, callback, ctx){
 
 $(document).ready(function(){
 
-  var $left = $('#leftbar'),
+/*  var $left = $('#leftbar'),
       $right = $('#rightbar');
   if(rightLeft == "right"){
     $left.hide();
@@ -34,6 +34,38 @@ $(document).ready(function(){
     
   $(document.pnSearchForm.search).click(function(event){
   //  switchBars();
+  });*/
+
+  $('form[name="addPart"]').change(function(e) {
+    var t = e.target;
+    if (t.id == "cat") {
+      temp = $('#cat');
+      $.ajax({  
+        url: "subcategoryList.php",
+        success: 
+        function(data) 
+        {
+          $('form[name="addPart"]').empty();
+          $('form[name="addPart"]').append(temp, data);
+        }
+      });    
+    }  
+    e.stopPropagation();
+  });
+
+  $('form[name="addPart"]').change(function(e) {
+    var t = e.target;
+    if (t.id == "subCat") {
+      $.ajax({  
+        url: "brandList.php",
+        success: 
+        function(data) 
+        {
+          $('form[name="addPart"]').append(data);
+        }
+      });    
+     }
+     e.stopPropagation();  
   });
 
 });

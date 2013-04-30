@@ -7,7 +7,7 @@ $query = "SELECT DISTINCT name, brandID FROM brand";
 
 $rd = $mysqli->query($query);
 ?>
-<div id="newPnBrandDiv" style="display:none;">
+<div id="newPnBrandDiv">
 <?php
 if(sizeof($rd)){
   echo '<select name="brand" class="partAddSelection">';

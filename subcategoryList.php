@@ -5,11 +5,11 @@ global $mysqli;
 
 $query = "SELECT DISTINCT name, subcategoryID FROM partSubcategory";
 ?>
-<div id="newPnSubcatDiv" style="display:none;">
+<div id="newPnSubcatDiv">
 <?php
 $rd = $mysqli->query($query);
 if(sizeof($rd)){
-  echo '<select name="subcategory" class="partAddSelection">';
+  echo '<select id="subCat" name="subcategory" class="partAddSelection">';
   echo '<option value="" >Subcategory</option>';
 }
 while($row = $rd->fetch_assoc()){

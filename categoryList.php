@@ -10,7 +10,7 @@ $rd = $mysqli->query($query);
 <div id="newPnCategoryDiv">
 <?php
 if(sizeof($rd)){
-  echo '<select name="category" class="partAddSelection">';
+  echo '<select id="cat" name="category" class="partAddSelection">';
   echo '<option value="" >Category</option>';
 }
 while($row = $rd->fetch_assoc()){
