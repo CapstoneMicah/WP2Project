@@ -2,12 +2,13 @@
   session_start();
   require_once('./lib/db.php');
   require_once('./searchfns.php');
+array_push($js, "./inc/js/jquery.tablesorter.min.js");
 ini_set('error_log','../../error_log.log');
 $_SESSION['vehicleID'] = 1;
 function buildRows($searchResults){
   $rwResults = array();
   $i = 0;
-  foreach($searchResults as $category => $subcategories){
+/*  foreach($searchResults as $category => $subcategories){
     foreach($subcategories as $subcategory => $results){
       foreach($results as $brand => $partnumber){
         $rowResults[$i] = array(
@@ -19,6 +20,17 @@ function buildRows($searchResults){
         $i++;
       }
     }
+  }*/
+  foreach($searchResults as $partID => $partData){
+   
+    $rowResults[$i] = array(
+      'partID' => $partID,
+      'partnumber' => $partData['partnumber'],
+      'category' => $partData['category'],
+      'subcategory' => $partData['subcategory'],
+      'brand' => $partData['brand']
+    );
+    $i++;
   }
   //if the size of the results coming in was > 0
   // and we're returning rows > 0
@@ -36,12 +48,13 @@ function displayResults($searchResults){
 <div id="partSearchResults">
   <center><h2></h2></center>
 
-  <table class="partResults" >
+  <table id="partResults" class="tablesorter" >
+    <thead>
     <tr>
-      <td colspan="8" id="tableName" style="background-color:#555;color:#FFF;"><center>Search Results</center></td>
+      <th colspan="8" id="tableName" style="background-color:#555;color:#FFF;"><center>Search Results</center></th>
     </tr>
 
-    <tr id="partRowSortAsc">
+  <!--  <tr id="partRowSortAsc">
       <td><a href="" class="sortAsc" id="sortBrandAsc"></a></td>
       <td><a href="" class="sortAsc" id="sortPnAsc"></a></td>
       <td><a href="" class="sortAsc" id="sortDescripAsc"></a></td>
@@ -50,18 +63,20 @@ function displayResults($searchResults){
       <td><a href="" class="sortAsc" id="sortLocAsc"></a></td>
       <td></td>
       <td></td>
-    </tr>
+    </tr>-->
+    
     <tr id="partRowHeader">
-      <th>Brand/Vendor</th>
-      <th style="min-width:100px;">Part Number</th>
-      <th>Description</th>
-      <th>Category</th>
-      <th>Subcategory</th>
-      <th>Location</th>
-      <th>Vehicle Applications</th>
-      <th>My Vehicle</th>
+      <th class="headerCell">Brand/Vendor</th>
+      <th class="headerCell" style="min-width:100px;">Part Number</th>
+      <th class="headerCell">Description</th>
+      <th class="headerCell">Category</th>
+      <th class="headerCell">Subcategory</th>
+      <th class="headerCell">Location</th>
+      <th class="headerCell">Vehicle Applications</th>
+      <th class="headerCell">My Vehicle</th>
     </tr>
-    <tr id="partRowSortDesc">
+</thead>
+<!--    <tr id="partRowSortDesc">
       <td><a href="" class="sortDesc" id="sortBrandDesc"></a></td>
       <td><a href="" class="sortDesc" id="sortPnDesc"></a></td>
       <td><a href="" class="sortDesc" id="sortDescripDesc"></a></td>
@@ -71,7 +86,8 @@ function displayResults($searchResults){
       <td></td>
       <td></td>
     </tr>
-  
+  -->
+<tbody>
 <?php  
   foreach($resultRows as $index => $row){ 
 ?>
@@ -87,16 +103,17 @@ function displayResults($searchResults){
       </td>
 <?php
   if($_SESSION['vehicleID']){
-    getVehiclePartScore($row['partID']);
+    $row['scores'] = getVehiclePartScore($row['partID']);
+
 ?>
       <td class="myVehResult">
         <div class="checkDiv">
-          <a href="javascript:setCompatible('<?php echo $_SESSION['vehicleID']; ?>');" class="checkbutton"></a>
-          <br /><?php echo $row['downScore']; ?>
+          <a id="<?php echo $row['partID'].'UP'; ?>" href="javascript:setCompatible(<?php echo $_SESSION['vehicleID'].','.$row['partID']; ?>);" class="checkbutton"></a>
+          <br /><div style="color:#55DD44;"><?php echo $row['scores']['up'] ? $row['scores']['up'] : '0'; ?></div>
         </div><!-- End checkDiv -->
         <div class="xDiv">
-          <a href="javascript:setIncompatible('<?php echo $_SESSION['vehicleID']; ?>');" class="xbutton"></a>
-          <br /><?php echo $row['upScore']; ?>
+          <a id="<?php echo $row['partID'].'DOWN'; ?>" href="javascript:setIncompatible(<?php echo $_SESSION['vehicleID'].','.$row['partID']; ?>);" class="xbutton"></a>
+          <br /><div style="color:#DD4444;"><?php echo $row['scores']['down'] ? $row['scores']['down'] : '0'; ?></div>
         </div><!-- end xDiv -->
       </td>
 <?php
@@ -104,6 +121,7 @@ function displayResults($searchResults){
 ?>
     </tr>
   <?php }//end foreach ?>
+  </tbody>
 </table>
 </div><!-- End partSearchResults -->
 <?php
@@ -140,7 +158,12 @@ function searchParts(){
 
     if($rd = $mysqli->query($query)){
       while($row = $rd->fetch_assoc()){
-        $searchResults[$row['category']][$row['subcategory']][$row['brand']] = $row['partnumber'];
+        $searchResults[$row['partID']] = array(
+            'partnumber' => $row['partnumber'],
+            'category' => $row['category'],
+            'subcategory' => $row['subcategory'],
+            'brand' => $row['brand']
+        );
         $catSubcatAssoc[$row['category']][$row['subcategory']] = 1;
       } 
     }else{
@@ -157,12 +180,12 @@ function getVehiclePartScore($partID) {
   global $mysqli;
 
   $query = "SELECT
-              upScore,
-              downScore
+              upScore AS up,
+              downScore AS down
             FROM
               vehiclePartScore
             WHERE
-              vehicleConfigID = '".$_SESSION['vehicleID']."'
+              vehicleConfigID = ".$_SESSION['vehicleID']."
               AND partID = ".$partID."
             LIMIT 1";
 
