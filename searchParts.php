@@ -2,25 +2,13 @@
   session_start();
   require_once('./lib/db.php');
   require_once('./searchfns.php');
-array_push($js, "./inc/js/jquery.tablesorter.min.js");
+
 ini_set('error_log','../../error_log.log');
 $_SESSION['vehicleID'] = 1;
 function buildRows($searchResults){
   $rwResults = array();
   $i = 0;
-/*  foreach($searchResults as $category => $subcategories){
-    foreach($subcategories as $subcategory => $results){
-      foreach($results as $brand => $partnumber){
-        $rowResults[$i] = array(
-            'brand' => $brand,
-            'category' => $category,
-            'subcategory' => $subcategory,
-            'partnumber' => $partnumber
-        );
-        $i++;
-      }
-    }
-  }*/
+  
   foreach($searchResults as $partID => $partData){
    
     $rowResults[$i] = array(
@@ -51,7 +39,7 @@ function displayResults($searchResults){
   <table id="partResults" class="tablesorter" >
     <thead>
     <tr>
-      <th colspan="8" id="tableName" style="background-color:#555;color:#FFF;"><center>Search Results</center></th>
+      <th colspan="6" id="tableName" style="background-color:#555;color:#FFF;"><center>Search Results</center></th>
     </tr>
 
     <tr id="partRowHeader">
@@ -59,8 +47,8 @@ function displayResults($searchResults){
       <th class="headerCell" style="min-width:100px;">Part Number</th>
       <th class="headerCell">Category</th>
       <th class="headerCell">Subcategory</th>
-      <th class="headerCell">Vehicle Applications</th>
-      <th class="headerCell">My Vehicle</th>
+      <th>Vehicle Applications</th>
+      <th>My Vehicle</th>
     </tr>
 </thead>
 <tbody>
