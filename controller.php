@@ -36,7 +36,6 @@ if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
       if(!searchParts()){
         echo "ERROR SEARCHING PARTS";
       }else{
-       echo "searched parts...";
       }
     }elseif($action == "addPart"){
       include('./addPart.php');

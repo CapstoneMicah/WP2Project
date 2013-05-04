@@ -2,25 +2,13 @@
   session_start();
   require_once('./lib/db.php');
   require_once('./searchfns.php');
-array_push($js, "./inc/js/jquery.tablesorter.min.js");
+
 ini_set('error_log','../../error_log.log');
 $_SESSION['vehicleID'] = 1;
 function buildRows($searchResults){
   $rwResults = array();
   $i = 0;
-/*  foreach($searchResults as $category => $subcategories){
-    foreach($subcategories as $subcategory => $results){
-      foreach($results as $brand => $partnumber){
-        $rowResults[$i] = array(
-            'brand' => $brand,
-            'category' => $category,
-            'subcategory' => $subcategory,
-            'partnumber' => $partnumber
-        );
-        $i++;
-      }
-    }
-  }*/
+  
   foreach($searchResults as $partID => $partData){
    
     $rowResults[$i] = array(
@@ -51,55 +39,29 @@ function displayResults($searchResults){
   <table id="partResults" class="tablesorter" >
     <thead>
     <tr>
-      <th colspan="8" id="tableName" style="background-color:#555;color:#FFF;"><center>Search Results</center></th>
+      <th colspan="6" id="tableName">Search Results</th>
     </tr>
 
-  <!--  <tr id="partRowSortAsc">
-      <td><a href="" class="sortAsc" id="sortBrandAsc"></a></td>
-      <td><a href="" class="sortAsc" id="sortPnAsc"></a></td>
-      <td><a href="" class="sortAsc" id="sortDescripAsc"></a></td>
-      <td><a href="" class="sortAsc" id="sortCatAsc"></a></td>
-      <td><a href="" class="sortAsc" id="sortSubCatAsc"></a></td>
-      <td><a href="" class="sortAsc" id="sortLocAsc"></a></td>
-      <td></td>
-      <td></td>
-    </tr>-->
-    
     <tr id="partRowHeader">
       <th class="headerCell">Brand/Vendor</th>
-      <th class="headerCell" style="min-width:100px;">Part Number</th>
-      <th class="headerCell">Description</th>
+      <th class="headerCell">Part Number</th>
       <th class="headerCell">Category</th>
       <th class="headerCell">Subcategory</th>
-      <th class="headerCell">Location</th>
-      <th class="headerCell">Vehicle Applications</th>
-      <th class="headerCell">My Vehicle</th>
+      <th>Vehicle Applications</th>
+      <th>My Vehicle</th>
     </tr>
 </thead>
-<!--    <tr id="partRowSortDesc">
-      <td><a href="" class="sortDesc" id="sortBrandDesc"></a></td>
-      <td><a href="" class="sortDesc" id="sortPnDesc"></a></td>
-      <td><a href="" class="sortDesc" id="sortDescripDesc"></a></td>
-      <td><a href="" class="sortDesc" id="sortCatDesc"></a></td>
-      <td><a href="" class="sortDesc" id="sortSubCatDesc"></a></td>
-      <td><a href="" class="sortDesc" id="sortLocDesc"></a></td>
-      <td></td>
-      <td></td>
-    </tr>
-  -->
 <tbody>
 <?php  
   foreach($resultRows as $index => $row){ 
 ?>
-    <tr class="partRow">
+    <tr id="<?php echo $row['partID']; ?>" class="partRow">
       <td class="brandResult"><?php echo $row['brand']; ?></td>
       <td class="pnResult"><?php echo $row['partnumber']; ?></td>
-      <td class="descResult"><?php echo $row['description']; ?></td>
       <td class="catResult"><?php echo $row['category']; ?></td>
       <td class="subcatResult"><?php echo $row['subcategory']; ?></td>
-      <td class="locResult"><?php echo $row['location']; ?></td>
       <td class="appsResult">
-        <a href="javascript:viewApplications('<?php echo $row['partnumber']; ?>')">View Applications</a>
+        <a href="javascript:viewApplications(<?php echo $row['partID'].', \''.$row['partnumber']; ?>');">View Applications</a>
       </td>
 <?php
   if($_SESSION['vehicleID']){
@@ -123,6 +85,7 @@ function displayResults($searchResults){
   <?php }//end foreach ?>
   </tbody>
 </table>
+  <div id="toggleAll">Show All</div>
 </div><!-- End partSearchResults -->
 <?php
   }//END if buildRows
@@ -146,7 +109,6 @@ function searchParts(){
     $query = "SELECT
                 parts.partID,
                 parts.partnumber AS partnumber, 
-                parts.description,
                 brand.name AS brand,
                 partCategory.name AS category,
                 partSubcategory.name AS subcategory
