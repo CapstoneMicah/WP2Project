@@ -1,5 +1,9 @@
 $(document).ready(function(){
   //var categories = new Array();
+
+  $('#toggleAll').click(function(){
+    toggleResults();
+  });
   //sortCatSubcats();
   $('#partResults').tablesorter();
   sortObject(catSubcatAssoc, function(key,value){
@@ -24,6 +28,12 @@ function refineSearchCategory(catName){
       $this.parent('tr').hide();
     }
   });
+
+  if($('#toggleAll').is(':visible')){
+    $('#toggleAll').hide();
+  }else{
+    $('#toggleAll').show();
+  }
 }
 
 function refineSearchSubcat(catName, subcatName){
@@ -35,6 +45,36 @@ function refineSearchSubcat(catName, subcatName){
       $this.parent('tr').hide();
     }
   });
+  
+  if($('#toggleAll').is(':visible')){
+    $('#toggleAll').hide();
+  }else{
+    $('#toggleAll').show();
+  }
+  
+}
+
+function toggleResults(partID){
+console.log(partID);
+console.log(typeof(partID));
+  $.each($('#partResults tbody tr'), function(){
+    var $this = $(this);
+console.log($this);
+    if(typeof(partID) != 'undefined'){
+      if($this.attr('id') == partID){
+        $this.show();
+      }else{
+        $this.hide();
+      }
+    }else{
+      $this.show();
+    }
+  });
+  if($('#toggleAll').is(':visible')){
+    $('#toggleAll').hide();
+  }else{
+    $('#toggleAll').show();
+  }
 }
 
 function sortCatSubcats(){
@@ -56,7 +96,6 @@ function getCategories(){
 }
 
 function viewApplications(partID, partnum){
-  console.log("ajaxing...\n");
   $.ajax({  
           method:'POST',
           url:"vehicleApplications.php",
@@ -66,8 +105,9 @@ function viewApplications(partID, partnum){
           },
           dataType:'json',
           success: function(data) {
+            toggleResults(partID);
+            $('#compatibleVehicleResults').remove();
             $('#body').append(data.html);
-            console.log(data.html);
           }
       });    
 }
