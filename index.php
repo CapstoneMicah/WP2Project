@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
 {
    header("Location: login.php?target=" . $_SERVER['PHP_SELF']);

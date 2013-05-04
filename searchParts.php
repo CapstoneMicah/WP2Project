@@ -39,12 +39,12 @@ function displayResults($searchResults){
   <table id="partResults" class="tablesorter" >
     <thead>
     <tr>
-      <th colspan="6" id="tableName" style="background-color:#555;color:#FFF;"><center>Search Results</center></th>
+      <th colspan="6" id="tableName">Search Results</th>
     </tr>
 
     <tr id="partRowHeader">
       <th class="headerCell">Brand/Vendor</th>
-      <th class="headerCell" style="min-width:100px;">Part Number</th>
+      <th class="headerCell">Part Number</th>
       <th class="headerCell">Category</th>
       <th class="headerCell">Subcategory</th>
       <th>Vehicle Applications</th>
@@ -55,13 +55,13 @@ function displayResults($searchResults){
 <?php  
   foreach($resultRows as $index => $row){ 
 ?>
-    <tr class="partRow">
+    <tr id="<?php echo $row['partID']; ?>" class="partRow">
       <td class="brandResult"><?php echo $row['brand']; ?></td>
       <td class="pnResult"><?php echo $row['partnumber']; ?></td>
       <td class="catResult"><?php echo $row['category']; ?></td>
       <td class="subcatResult"><?php echo $row['subcategory']; ?></td>
       <td class="appsResult">
-        <a href="javascript:viewApplications('<?php echo $row['partnumber']; ?>')">View Applications</a>
+        <a href="javascript:viewApplications(<?php echo $row['partID'].', \''.$row['partnumber']; ?>');">View Applications</a>
       </td>
 <?php
   if($_SESSION['vehicleID']){
@@ -85,6 +85,7 @@ function displayResults($searchResults){
   <?php }//end foreach ?>
   </tbody>
 </table>
+  <div id="toggleAll">Show All</div>
 </div><!-- End partSearchResults -->
 <?php
   }//END if buildRows
@@ -108,7 +109,6 @@ function searchParts(){
     $query = "SELECT
                 parts.partID,
                 parts.partnumber AS partnumber, 
-                parts.description,
                 brand.name AS brand,
                 partCategory.name AS category,
                 partSubcategory.name AS subcategory
