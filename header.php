@@ -38,14 +38,12 @@
     </div><!-- End pnSearch --> 
 <!--  </div>--><!-- END logoAndPN -->
   <div class="separator"></div>  
-  
   <div id="vehicleSelect" class="chooser">
     <div id="vehicleSelectDiv">
 <!--My Vehicles: <br /> -->
       <div id="myVehiclesButton" class="collapsed" >
       My Vehicles (<?php echo sizeof($_SESSION['vehicles'])?sizeof($_SESSION['vehicles']):0; ?>)
       </div><!-- End myVehicles button -->
- 
     </div><!-- End vehicleSelect -->
     <div id="vehicleSelectExtension" style="display:none;">
       <?php 
@@ -64,7 +62,9 @@
     <div class="separator"></div>
     <div id="pnAdder" class="chooser">
       <div id="pnAdderFormDiv">
-        <center>Add a Part:</center>
+        <div id="partAdderButton" class="collapsed" >Add a Part</div><!-- End partAdder button -->
+      </div>
+      <div id="partAdderExtension" style="display:none;">
         <div id="pnAdderFormComponentsDiv">
           <form name="addPart" action="" method="POST">
             <?php require_once('./categoryList.php'); ?>

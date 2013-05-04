@@ -35,39 +35,58 @@ $(document).ready(function(){
   $(document.pnSearchForm.search).click(function(event){
   //  switchBars();
   });*/
+  
 
-  $('form[name="addPart"]').change(function(e) {
-    var t = e.target;
-    if (t.id == "cat") {
-      temp = $('#cat');
-      $.ajax({  
-        url: "subcategoryList.php",
-        success: 
-        function(data) 
-        {
-          $('form[name="addPart"]').empty();
-          $('form[name="addPart"]').append(temp, data);
+
+  
+  $('body').change(function(event) {
+    
+    event.stopPropagation();
+
+    var $formToChange = $(event.target).parent().parent();
+    
+    var jqObject = $formToChange.children();  //using the jQuery children function returns a jquery object
+    var jsArray = jqObject.splice(0, jqObject.length); //convert to array for array method access
+
+    //slice out the select tag after the tag that fired the even
+    if (jsArray[jsArray.length-1] != event.target.parentNode)
+      jsArray = jsArray.splice(0, jsArray.indexOf(event.target.parentNode)+1);
+
+    var urlToLoad;
+
+    switch(event.target.id) {
+      case "yearSelect":
+        urlToLoad = "vehicleMake.php";
+        break;
+      case "makeSelect":
+        urlToLoad = "vehicleModel.php";
+        break;
+      case "modelSelect":
+        urlToLoad = "vehicleSubmodel.php";
+        break;
+      case "cat":
+        urlToLoad = "subcategoryList.php";
+        break;
+      case "subCat":
+        urlToLoad = "brandList.php";
+        break;
+      case "brand":
+        return false;
+    }
+
+    var postValue = event.target.options[event.target.selectedIndex].value;
+    
+    $.ajax({
+      type: "POST",
+      url: urlToLoad,
+      data: {formData: postValue},
+      success:
+        function(data) {
+          $formToChange.empty();
+          $formToChange.append(jsArray, data);
         }
-      });    
-    }  
-    e.stopPropagation();
+    });
   });
-
-  $('form[name="addPart"]').change(function(e) {
-    var t = e.target;
-    if (t.id == "subCat") {
-      $.ajax({  
-        url: "brandList.php",
-        success: 
-        function(data) 
-        {
-          $('form[name="addPart"]').append(data);
-        }
-      });    
-     }
-     e.stopPropagation();  
-  });
-
 });
 
 function switchBars(){

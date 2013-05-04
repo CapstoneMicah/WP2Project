@@ -1,17 +1,6 @@
 <?php
 require_once('./lib/db.php');
 
-$makeQuery = "SELECT
-             vehicleMake.name AS make
-          FROM
-             vehicleMake
-";
-
-$modelQuery = "SELECT
-             vehicleModel.name AS model
-          FROM
-             vehicleModel
-";
 $submodelQuery = "SELECT
              vehicleSubmodel.name AS submodel
           FROM
@@ -23,40 +12,19 @@ $engineQuery = "SELECT
              vehicleEngine
 ";
 
-$makeResult = $mysqli->query($makeQuery);
-$modelResult = $mysqli->query($modelQuery);
+//$modelResult = $mysqli->query($modelQuery);
 $submodelResult = $mysqli->query($submodelQuery);
 $engineResult = $mysqli->query($engineQuery);
 ?>
     <form name="vehicleSelect" action="" method="POST">
       <div id="yearDiv">
-        <select name="yearChoice" class="vehicleSelection">
+        <select id="yearSelect" name="yearChoice" class="vehicleSelection">
           <option value="" >Year</option>
           <!-- If more years are added, generate from DB results -->
           <option value="2013" >2013</option>
         </select></br>
       </div><!-- End yearDiv -->
-      <div id="makeDiv" style="display:none">
-        <select name="makeChoice" class="vehicleSelection">
-          <option value="" >Make</option>
-          <?php
-            while($make = $makeResult->fetch_assoc()){
-              echo '<option value="'.$make['make'].'">'.$make['make'].'</option>';
-            }
-          ?>
-        </select> <br />
-      </div><!-- End makeDiv -->
-      <div id="modelDiv" style="display:none;">
-        <select name="modelChoice" class="vehicleSelection">
-          <option value="" >Model</option>
-          <?php
-            while($model = $modelResult->fetch_assoc()){
-              echo '<option value="'.$model['model'].'">'.$model['model'].'</option>';
-            }
-          ?>
-        </select><br />
-      </div><!-- End modelDiv -->
-      <div id="submodelDiv" style="display:none;"> 
+          <div id="submodelDiv" style="display:none;"> 
         <select name="subModelChoice" class="vehicleSelection">
           <option value="" >Submodel/Trim</option>
           <?php
