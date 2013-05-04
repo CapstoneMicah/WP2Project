@@ -54,3 +54,21 @@ function getCategories(){
   });
   //categories  
 }
+
+function viewApplications(partID, partnum){
+  console.log("ajaxing...\n");
+  $.ajax({  
+          method:'POST',
+          url:"vehicleApplications.php",
+          data:{ 
+            part:partID,
+            partnumber:partnum
+          },
+          dataType:'json',
+          success: function(data) {
+            $('#body').append(data.html);
+            console.log(data.html);
+          }
+      });    
+}
+

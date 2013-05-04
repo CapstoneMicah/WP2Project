@@ -1,10 +1,11 @@
-
+<html>
+<head>
 <?php 
   require_once('./tempfns.php');
   addCss($css); 
   addJs($js); 
 ?>
-
+</head>
 <div id="topbar">
   
   <div id="logo"><h3>Part Fitter</h3></div>
