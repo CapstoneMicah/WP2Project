@@ -10,17 +10,38 @@ $(document).ready(function() {
     event.stopPropagation();
   });
 
+  $('#partAdderButton').click(function(event){
+    $(this).toggleClass('expanded').toggleClass('collapsed');
+    if ($(this).hasClass('expanded')) {
+      $('#partAdderExtension').show();
+    } else {
+      $('#partAdderExtension').hide();
+    }
+    event.stopPropagation();
+  });
+
+
   $('html').click(function(){
     var $myVehiclesButton = $('#myVehiclesButton'),
-        $vehicleSelection = $('#vehicleSelectExtension');
+        $vehicleSelection = $('#vehicleSelectExtension'),
+        $partAdderButton = $('#partAdderButton'),
+        $partAdderSelection = $('#partAdderExtension');
     if ($myVehiclesButton.hasClass('expanded')) { 
       $myVehiclesButton.toggleClass('expanded').toggleClass('collapsed'); 
     } 
+    if ($partAdderButton.hasClass('expanded')) {
+      $partAdderButton.toggleClass('expanded').toggleClass('collapsed');
+    }
     $vehicleSelection.hide();
+    $partAdderSelection.hide();
   });
-  
+
   $('#vehicleSelectExtension').click(function(event){
       event.stopPropagation();
+  });
+
+  $('#partAdderExtension').click(function(event) {
+    event.stopPropagation();
   });
 });
 

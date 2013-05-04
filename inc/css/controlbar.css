@@ -45,15 +45,15 @@ div#controlbar .separator
   margin-top:25px;  
 }
 
-div#controlbar div#pnSearchFormDiv, div#pnAdderFormDiv
+div#controlbar div#pnSearchFormDiv, div#pnAdderFormDiv, div#vehicleSelectDiv 
 {
   padding:20px 20px 8px 20px;
 }
 
-div#myVehiclesButton /*vehicleSelectDiv*/
+div#myVehiclesButton, /*vehicleSelectDiv*/ div#partAdderButton
 {
   width:100px;
-  margin:30px auto 10px auto;
+  margin:10px auto 10px auto;
   font-family:Sans-serif;
   font-size:80%;
   display:block;
@@ -64,9 +64,10 @@ div#myVehiclesButton /*vehicleSelectDiv*/
   border-bottom-right-radius:6px;
   border-bottom-left-radius:6px;
   cursor:pointer;
+  text-align:center;
 }
 
-div#myVehiclesButton:hover /*vehicleSelectDiv:hover*/
+div#myVehiclesButton:hover, /*vehicleSelectDiv:hover*/ div#partAdderButton:hover
 {
   background-color:#555;
 }
@@ -76,10 +77,10 @@ div#controlbar select.vehicleSelection select.partAddSelection
   width:150px;
 }
 
-div#controlbar div#vehicleSelectExtension
+div#controlbar div#vehicleSelectExtension, div#partAdderExtension
 {
   position:relative;
-  height:100%;
+  min-height:100%;
   width:190px;
   margin-top:0px;
   background-color:#131313;
@@ -92,8 +93,8 @@ div#controlbar #bottom
   border-top:1px solid #2d2d2d;
 }
 
-div#pnAdderFormComponentsDiv
+/*div#pnAdderFormComponentsDiv
 {
   background-color: #000000;
   display: inline-block;
-}
+}*/
