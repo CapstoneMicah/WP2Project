@@ -53,33 +53,53 @@ $(document).ready(function(){
       jsArray = jsArray.splice(0, jsArray.indexOf(event.target.parentNode)+1);
 
     var urlToLoad;
+    var postValue = event.target.options[event.target.selectedIndex].value;
+    var dataToSend;
 
     switch(event.target.id) {
       case "yearSelect":
+        dataToSend = {formData: postValue};    
         urlToLoad = "vehicleMake.php";
         break;
       case "makeSelect":
+        dataToSend = {formData: postValue};
         urlToLoad = "vehicleModel.php";
         break;
       case "modelSelect":
+        dataToSend = {formData: postValue};
         urlToLoad = "vehicleSubmodel.php";
         break;
+      case "submodelSelect":
+        modelSelect = document.getElementById("modelSelect");
+        modelValue = modelSelect.options[modelSelect.selectedIndex].value;
+        dataToSend = {modelID: modelValue, submodelID: postValue};
+        urlToLoad = "vehicleEngine.php";
+        break;
+      case "engineSelect":
+        modelSelect = document.getElementById("modelSelect");
+        modelValue = modelSelect.options[modelSelect.selectedIndex].value;
+        submodelSelect = document.getElementById("submodelSelect");
+        submodelValue = submodelSelect.options[submodelSelect.selectedIndex].value;
+        dataToSend = {modelID: modelValue, submodelID: submodelValue, engineID: postValue};
+        urlToLoad = "vehicleSubmit.php";
+        break;
       case "cat":
+        dataToSend = {formData: postValue};
         urlToLoad = "subcategoryList.php";
         break;
       case "subCat":
+        dataToSend = {formData: postValue};
         urlToLoad = "brandList.php";
         break;
       case "brand":
         return false;
     }
 
-    var postValue = event.target.options[event.target.selectedIndex].value;
     
     $.ajax({
       type: "POST",
       url: urlToLoad,
-      data: {formData: postValue},
+      data: dataToSend,
       success:
         function(data) {
           $formToChange.empty();
