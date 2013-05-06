@@ -13,7 +13,7 @@ $makeResult = $mysqli->query("SELECT vehicleMake.name, vehicleMake.makeID " .
               echo '<option value="'.$make['makeID'].'">'.$make['name'].'</option>';
             }
           ?>
-        </select> <br />
+        </select><br/>
       </div><!-- End makeDiv -->
 
 
