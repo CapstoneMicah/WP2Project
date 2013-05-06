@@ -35,10 +35,8 @@ $(document).ready(function(){
   $(document.pnSearchForm.search).click(function(event){
   //  switchBars();
   });*/
-  
 
-
-  
+  switchBars();
   $('body').change(function(event) {
     
     event.stopPropagation();

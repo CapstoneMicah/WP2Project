@@ -14,15 +14,14 @@
               LEFT JOIN vehicleEngine USING (engineID)
               JOIN vehiclePartScore USING (vehicleConfigID)
             GROUP BY vehicleConfigID 
-            ORDER BY numApplications DESC
-            LIMIT 5";
+            ORDER BY numApplications ASC
+            LIMIT 10";
   if($sth = $mysqli->query($query)){
     $i=1;
-    while($row = $sth->fetch_assoc()){   
-      echo '<div class="mostCompatible">';
+    while($row = $sth->fetch_assoc()){
+      echo '<div class="leastCompatible">';
       echo $i.".&nbsp;&nbsp;".$row['make']."&nbsp;".$row['model']."&nbsp;".$row['submodel']."&nbsp;".$row['engine']."<div class='compatibleCount'>+".$row['numApplications']."</div>";
-  
-      echo '</div>';
+      echo "</div>";//end least compatible
       $i++;
     }
   }

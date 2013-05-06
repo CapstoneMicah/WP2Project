@@ -60,18 +60,13 @@ if ( isset($_POST['loginRestricted']) && empty($_SESSION['user']) )
 
 <div id="rightbar">
   <div class="divHeader">
-    <?php 
-      //if($_POST['action'] == 'searchParts'){
-        //echo '<h3>Part Search Rightbar</h3>'; 
-      //}else
-if($_POST['action'] == 'applications' || $_SERVER['SCRIPT_NAME'] == "vehicleApplications.php"){
-        echo '<h3>Other Applications</h3>';
-      }
-    ?>
+   <h3>Most Compatible</h3>
   </div>
-  <?php 
-    if($_POST['action'] == 'applications' || $_SERVER['SCRIPT_NAME'] == "vehicleApplications.phhp"){
-      include('./mostCompatible.php'); 
-    }
-  ?>
+  <?php include('./mostCompatible.php');  ?>
+
+  <br /><br />
+  <div class="divHeader">
+    <h3>Least Compatible</h3>
+  </div>
+  <?php include('./leastCompatible.php'); ?>
 </div><!-- End rightBar div -->

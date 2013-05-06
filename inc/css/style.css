@@ -41,6 +41,7 @@ div#body
 
 div#leftbar
 {
+  display:none;
   float:left;
   width:20%;
   margin-right:10px;
@@ -78,8 +79,9 @@ div#leftbar .refineSubcat
 
 div#rightbar
 {
+  display:none;
   float:left;
-  width:30%;
+  width:20%;
   margin-left:10px;
   background-color:#FAFAFA;
   border: 1px solid #666;
@@ -98,6 +100,36 @@ div#rightbar .divHeader h3
   color:#EAEAEA;
   height:30px;
   background-color:#222;
+}
+
+div#rightbar .leastCompatible
+{
+  width:100%;
+  margin:2px 10px;
+}
+
+div#rightbar .leastCompatible .compatibleCount
+{
+  position:relative;
+  float:right;
+  width:40px;
+  color:#22AA22;
+  font-size:1.4em;
+}
+
+div#rightbar .mostCompatible
+{
+  width:100%;
+  margin:2px 10px;
+}
+
+div#rightbar .mostCompatible .compatibleCount
+{
+  position:relative;
+  float:right;
+  width:40px;
+  color:#22AA22;
+  font-size:1.4em;
 }
 
 div#partSearchResults
