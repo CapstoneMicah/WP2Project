@@ -66,17 +66,11 @@
         <div id="partAdderButton" class="collapsed" >Add a Part</div><!-- End partAdder button -->
       </div>
       <div id="partAdderExtension" style="display:none;">
+        <?php echo $_SESSION['test']; ?>
+        <?php echo $_SESSION['error']; ?>
         <div id="pnAdderFormComponentsDiv">
-          <form name="addPart" action="" method="POST">
+          <form name="addPart" action="addPart.php" method="POST">
             <?php require_once('./categoryList.php'); ?>
-            <div id="newPnDiv" style="display:none;">
-              <input name="partnumber" placeholder="New Part Number" style="width:150px;"></input>
-              <br />
-            </div><!-- End newPnDiv -->
-            <input type="hidden" name="action" value="addPart" />
-            <div id="pnAddDiv" style="display:none;">
-              <input type="submit" name="add" value="Add" />
-            </div><!-- End pnAddDiv -->
           </form>
         </div>
       </div><!-- End pnAddForm -->

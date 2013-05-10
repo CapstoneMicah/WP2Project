@@ -1,41 +1,31 @@
 <?php
-  //require_once('./controlbar.php');
-  require_once('./lib/db.php');
-  global $mysqli;
+require_once('./lib/db.php');
+global $mysqli;
+session_start();
 
-  if(isset($_POST['partnumber'])){echo "ZERO";
-    //Insert into DB
-    $query = "SELECT COUNT(*) AS partCount
-              FROM parts
-              WHERE partnumber='".$_POST['partnumber']."'";
-echo $query;
-    $rd = $mysqli->query($query);
-var_dump($rd);
-$result = $rd->fetch_assoc();
-var_dump($result);
-  if($result['exists'] > 0){
-echo "query executed<br />";
+if(isset($_POST['partnumber']))
+{
+$query = "SELECT COUNT(*) AS partCountdb FROM parts
+WHERE partnumber='".$_POST['partnumber']."'";
+$results = $mysqli->query($query);
+$result = $results->fetch_assoc();
+}
 
-//var_dump($rd->fetch_assoc());
-      // Part already exists; 
-      // redirect to part page  with "already exists" message
-//echo "redirecting";      
-//header("Location: http://www.cs.kent.edu/~mdetamor/wp2/PROJECT/partPage.php?pn=".$_POST['partnumber']."&ae=1");
-    }else{
-echo "ONE";
-      $query = "INSERT INTO parts (partnumber, categoryID, subcategoryID, brandID) VALUES ('".$_POST['partnumber']."','".$_POST['category']."','".$_POST['subcategory']."','".$_POST['brand']."' ) ";
-      if($rd = $mysqli->query($query)){
-        //Possibly need a better solution to redirect to the
-        //partPage with current vars (category, subcat, brand)
-        //instead of re-searching once there
-echo "TWO";
-//        header("Location: ./partPage.php?pn=".$_POST['partnumber']);
-      }else{
-echo "THREE";
-        //Error handling
-        echo "Unable to insert part into DB. ".$mysqli->error;
-      }
-    }
-  }
-  
+if (!($_SESSION['vehicleID']))
+  $_SESSION['error'] = "No Vehicle Selected";
+else if ($result->num_rows > 0)
+  $_SESSION['error'] = "Part Already Exists";
+else
+{
+  $addPartQuery = "INSERT INTO parts (partnumber, brandID) VALUES ('" . 
+  $_POST['partnumber'] . "'," . $_POST['brand'] . " ) ";
+  $success = $mysqli->query($addPartQuery); 
+}
+if ($success == 1)
+  $_SESSION['error'] = "Part Added";
+
+echo $_SESSION['error'];
+
+header("Location: https://" . $_SERVER['SERVER_NAME'] . "/~sfarina/partPicker");
+
 ?>

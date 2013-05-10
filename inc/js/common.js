@@ -37,34 +37,32 @@ $(document).ready(function(){
   });*/
 
   switchBars();
-  $('body').change(function(event) {
+  $('body').on('change', function(event) {
     
     event.stopPropagation();
+    event.preventDefault();
 
     var $formToChange = $(event.target).parent().parent();
     
     var jqObject = $formToChange.children();  //using the jQuery children function returns a jquery object
     var jsArray = jqObject.splice(0, jqObject.length); //convert to array for array method access
-
+    
     //slice out the select tag after the tag that fired the even
     if (jsArray[jsArray.length-1] != event.target.parentNode)
       jsArray = jsArray.splice(0, jsArray.indexOf(event.target.parentNode)+1);
 
     var urlToLoad;
     var postValue = event.target.options[event.target.selectedIndex].value;
-    var dataToSend;
+    var dataToSend = {formData: postValue};
 
     switch(event.target.id) {
       case "yearSelect":
-        dataToSend = {formData: postValue};    
         urlToLoad = "vehicleMake.php";
         break;
       case "makeSelect":
-        dataToSend = {formData: postValue};
         urlToLoad = "vehicleModel.php";
         break;
       case "modelSelect":
-        dataToSend = {formData: postValue};
         urlToLoad = "vehicleSubmodel.php";
         break;
       case "submodelSelect":
@@ -82,18 +80,18 @@ $(document).ready(function(){
         urlToLoad = "vehicleSubmit.php";
         break;
       case "cat":
-        dataToSend = {formData: postValue};
         urlToLoad = "subcategoryList.php";
         break;
       case "subCat":
-        dataToSend = {formData: postValue};
         urlToLoad = "brandList.php";
         break;
       case "brand":
-        return false;
+        urlToLoad = "partNumButton.php"
+        break;
     }
 
-    
+    console.log(jsArray);
+
     $.ajax({
       type: "POST",
       url: urlToLoad,
@@ -105,6 +103,7 @@ $(document).ready(function(){
         }
     });
   });
+
 });
 
 function switchBars(){
